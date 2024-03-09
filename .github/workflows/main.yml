@@ -1,0 +1,33 @@
+
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      if: ${{ hashFiles('package.json') != '' }}
+      run: npm install
+
+    - name: Run tests
+      if: ${{ hashFiles('__tests__') != '' }}
+      run: npm run test
+
+    - name: Build iOS app
+      if: ${{ hashFiles('ios') != '' }}
+      run: npm run build:ios
+
+    - name: Build Android app
+      if: ${{ hashFiles('android') != '' }}
+      run: npm run build:android
