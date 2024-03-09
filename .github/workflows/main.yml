@@ -1,5 +1,3 @@
-
-
 name: CI
 
 on:
@@ -18,16 +16,20 @@ jobs:
 
     - name: Install dependencies
       if: ${{ hashFiles('package.json') != '' }}
-      run: npm install
+      run: yarn install
 
     - name: Run tests
       if: ${{ hashFiles('__tests__') != '' }}
-      run: npm run test
+      run: yarn test
+
+    - name: Install iOS dependencies
+      if: ${{ hashFiles('Podfile') != '' }}
+      run: yarn pod-install
 
     - name: Build iOS app
       if: ${{ hashFiles('ios') != '' }}
-      run: cd ios && xcodebuild -workspace RNNewArch.xcworkspace -scheme RNNewArch ONLY_ACTIVE_ARCH=YES build && cd ../
+      run: yarn ios
 
     - name: Build Android app
       if: ${{ hashFiles('android') != '' }}
-      run: npm run android
+      run: yarn android
