@@ -24,7 +24,7 @@ jobs:
       run: yarn pod-install
 
     - name: Build iOS app
-      run: yarn build:ios
+      run: yarn ci:build:ios
 
     - name: Build Android app
       run: yarn android

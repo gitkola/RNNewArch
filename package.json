@@ -9,7 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "pod-install": "cd ios && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install",
-    "build:ios": "cd ios && xcodebuild -workspace RNNewArch.xcworkspace -scheme RNNewArch ONLY_ACTIVE_ARCH=YES build && cd ../"
+    "ci:build:ios": "cd ios && xcodebuild -workspace RNNewArch.xcworkspace -scheme RNNewArch -sdk iphonesimulator -configuration Debug ONLY_ACTIVE_ARCH=YES build -allowProvisioningUpdates && cd ../"
   },
   "dependencies": {
     "react": "18.2.0",
