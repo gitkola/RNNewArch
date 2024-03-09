@@ -26,7 +26,7 @@ jobs:
 
     - name: Build iOS app
       if: ${{ hashFiles('ios') != '' }}
-      run: cd ios && xcodebuild -workspace RNNewArch.xcworkspace -scheme Release ONLY_ACTIVE_ARCH=YES build && cd ../
+      run: cd ios && xcodebuild -workspace RNNewArch.xcworkspace -scheme RNNewArch ONLY_ACTIVE_ARCH=YES build && cd ../
 
     - name: Build Android app
       if: ${{ hashFiles('android') != '' }}
